@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Ray.gd" type="Script" id=1]
+[ext_resource path="res://RigidBody.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1.02411, 2.39691 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 9.96225, 0.257535, 9.95442 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SphereMesh" id=6]
+
+[sub_resource type="SphereShape" id=7]
+radius = 1.04814
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.472325, 0.101051, -0.875613, 0.000941679, 0.993348, 0.115146, 0.881424, -0.055211, 0.469088, -10.339, 0.889072, 6.22062 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.28602, 0 )
+mass = 1410.0
+script = ExtResource( 2 )
+
+[node name="RayCast4" type="RayCast" parent="RigidBody" groups=[
+"ray",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.561, -0.843614, 1.337 )
+enabled = true
+exclude_parent = false
+cast_to = Vector3( 0, -0.5, 0 )
+script = ExtResource( 1 )
+restLength = 0.7
+damperStiffness = 4000.0
+
+[node name="RayCast5" type="RayCast" parent="RigidBody" groups=[
+"ray",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.561, -0.844, 1.337 )
+enabled = true
+exclude_parent = false
+cast_to = Vector3( 0, -0.5, 0 )
+script = ExtResource( 1 )
+restLength = 0.7
+
+[node name="RayCast7" type="RayCast" parent="RigidBody" groups=[
+"ray",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.561, -0.843614, -1.337 )
+enabled = true
+exclude_parent = false
+cast_to = Vector3( 0, -0.5, 0 )
+script = ExtResource( 1 )
+restLength = 0.7
+
+[node name="RayCast8" type="RayCast" parent="RigidBody" groups=[
+"ray",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.561, -0.844, -1.337 )
+enabled = true
+exclude_parent = false
+cast_to = Vector3( 0, -0.5, 0 )
+script = ExtResource( 1 )
+restLength = 0.7
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+transform = Transform( 2.16021, 0, 0, 0, 1, 0, 0, 0, 0.758047, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+transform = Transform( 2.16021, 0, 0, 0, 1, 0, 0, 0, 1.78115, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 5.16256, 0, 0, 0, 1, 0, 0, 0, 5.60127, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 10, 0, 0, 0, 0.25, 0, 0, 0, 10, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65624, -0.157949, 5.7561 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+shape = SubResource( 7 )
